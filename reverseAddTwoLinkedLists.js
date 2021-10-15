@@ -30,7 +30,7 @@ function reverseLinkList(number) {
   //create a reverse linked list.
   let nextNode = undefined;
   numberAsArray.forEach(num => {
-      const currentNode = ListNode(num, nextNode);
+      const currentNode = new ListNode(num, nextNode);
       nextNode = currentNode;
   });
   return nextNode;
