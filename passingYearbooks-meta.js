@@ -38,12 +38,36 @@ Each student received 1 signature.
 
 */
 
-//MY CODE
-
-//FB TEST CODE
 function findSignatureCounts(arr) {
   // Write your code here
+  const sigCounts = [];
+  let foundStudents = new Set();
+  // find the ring of passing, all books in that ring will get the same number of sigs
+  // move to the next person not in a ring and do it again.
+  // o(n)
+  for (let i=0; i < arr.length; i++) {
+    if(!foundStudents.has(i)) {
+      findRing(i);
+    }
+  }
   
+  function findRing(pos) {
+    let newPos = pos;
+    let count = 0;
+    const ringPositions = new Set();
+    while(!foundStudents.has(newPos)) {
+      foundStudents.add(newPos);
+      ringPositions.add(newPos);
+      count++;
+      newPos = arr[newPos] - 1;
+    }
+    for (let item of ringPositions) {
+      sigCounts[item] = count;
+    }
+  }
+  
+  console.log(sigCounts);
+  return sigCounts;
 }
 
 
